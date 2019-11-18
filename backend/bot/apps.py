@@ -1,5 +1,4 @@
 # coding=utf-8
-# django_telegram_bot/apps.py
 from django.apps import AppConfig
 from django.apps import apps
 from django.conf import settings
@@ -34,7 +33,7 @@ class classproperty(property):
 
 
 class DjangoTelegramBot(AppConfig):
-    name = 'bot'
+    name = 'backend.bot'
     verbose_name = 'Django TelegramBot'
     ready_run = False
     bot_tokens = []
@@ -123,7 +122,7 @@ class DjangoTelegramBot(AppConfig):
 
     def ready(self):
         bot_data = settings.TELEGRAM_BOT
-        if DjangoTelegramBot.ready_run or not bot_data['ENABLE']:
+        if not bot_data['ENABLE']:
             return
         DjangoTelegramBot.ready_run = True
 

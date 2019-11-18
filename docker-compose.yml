@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    env_file:
+      - .env
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:1.14.2
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx_prod.conf:/etc/nginx/conf.d/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+
+  web:
+    build: .
+    restart: always
+    command: gunicorn --bind 0.0.0.0:8000 --log-level INFO event_chat_bots.wsgi
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - /root/event_chat_bots:/usr/app/event_bot
+    depends_on:
+      - nginx
+      - db

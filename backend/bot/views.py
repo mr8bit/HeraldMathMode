@@ -8,10 +8,11 @@ from django.views.decorators.csrf import csrf_exempt
 from telegram.error import (TelegramError)
 
 from backend.bot.apps import DjangoTelegramBot
-from backend.bot.handlers.viber.request_handler import ViberRequestHandler
 
-from backend.bot.handlers.vk.request_handler import VKRequestHandler
-from backend.bot.handlers.facebook.request_handler import FacebookRequestHandler
+from backend.bot.messangers.handlers import ViberRequestHandler
+from backend.bot.messangers.handlers import VKRequestHandler
+from backend.bot.messangers.handlers import FacebookRequestHandler
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +28,6 @@ def viber_bot(request):
         viber_request_handler = ViberRequestHandler.create_instance()
         response = viber_request_handler.parse(request)
     return HttpResponse()
-import json
 
 
 @csrf_exempt
@@ -44,6 +44,7 @@ def vk_bot(request):
         return response
     return HttpResponse('Ok')
 
+
 @csrf_exempt
 def facebook_bot(request):
     """
@@ -54,6 +55,7 @@ def facebook_bot(request):
     facebook_request_handler = FacebookRequestHandler.create_instance()
     response = facebook_request_handler.parse(request)
     return response
+
 
 @csrf_exempt
 def webhook(request, bot_token):

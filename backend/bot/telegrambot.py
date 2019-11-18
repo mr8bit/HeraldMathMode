@@ -3,10 +3,10 @@ import logging
 from telegram.ext import MessageHandler, Filters, CommandHandler
 
 from backend.bot.models import User
-from backend.bot.handlers.telegram.trigger import TelegramTrigger
+from backend.bot.messangers.trigger import TelegramTrigger
 from backend.bot.apps import DjangoTelegramBot
-from backend.bot.handlers.core.state_machine import StateMachine
-from backend.bot.states import BootStrapState
+from backend.bot.messangers.core.state_machine import StateMachine
+from backend.schedule.states import BootStrapState
 
 logger = logging.getLogger(__name__)
 
