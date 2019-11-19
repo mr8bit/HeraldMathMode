@@ -2,11 +2,11 @@ import logging
 
 from telegram.ext import MessageHandler, Filters, CommandHandler
 
-from backend.bot.models import User
 from backend.bot.messangers.trigger import TelegramTrigger
 from backend.bot.apps import DjangoTelegramBot
 from backend.bot.messangers.core.state_machine import StateMachine
 from backend.schedule.states import BootStrapState
+from backend.bot.models import User, Request, Error
 
 logger = logging.getLogger(__name__)
 
@@ -17,12 +17,14 @@ def error(bot, update, error):
 
 def start(bot, update):
     machine = StateMachine(initial_state=BootStrapState())
+    ########### Сохраянем статистику в БД ###########
     try:
         usr = User.objects.get(user_id=update.message.chat_id)
+        Request.create_request(user=usr, state=usr.state, text=update.message.text)  # сохраняем запрос
         state = usr.state
     except Exception as e:
-        usr = None
         state = None
+    ########### Сохраянем статистику в БД ###########
 
     trigger = TelegramTrigger(
         client=bot,
@@ -30,7 +32,6 @@ def start(bot, update):
         messenger=0,
         text=update.message.text,
         user_state=state,
-        api=None,
         telegram_slug=update.message.chat.username
     )
     machine.fire(trigger)

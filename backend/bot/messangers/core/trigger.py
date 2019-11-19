@@ -3,7 +3,7 @@ class BaseTrigger:
         Базовый триггер
     """
 
-    def __init__(self, client, user_id, messenger, text, user_state, api, **kwds):
+    def __init__(self, client, user_id, messenger, text, user_state, **kwds):
         """
             Инициализация класса
         :param client: API для работы и отправки сообщений
@@ -18,10 +18,7 @@ class BaseTrigger:
         self.messenger = messenger
         self.user_id = user_id
         self.state = user_state
-        self.api = api
         super().__init__(**kwds)
-
-
 
     def send_keyboard(self, message, buttons, whom=None):
         pass

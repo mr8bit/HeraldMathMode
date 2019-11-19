@@ -31,8 +31,10 @@ class Notification(models.Model):
     """
         Млдель оповещений
     """
+    choices = ((0, 'Telegram'), (1, 'Viber'), (2, 'VK'), (3, 'Facebook'), (4, "Все"))
     name = models.CharField(max_length=300, verbose_name="Название")
     message = models.TextField(verbose_name="Сообщение")
+    for_messenger = models.IntegerField(choices=choices, verbose_name="Мессенджер", default=4)
 
 
 class Request(models.Model):
@@ -41,8 +43,8 @@ class Request(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="Пользователь", blank=True, null=True)
     state = models.TextField(verbose_name="Экран", blank=True, null=True)
-    date = models.DateField(auto_now=True, verbose_name="Время")
-    text = models.TextField(blank=True, null=True )
+    date = models.DateTimeField(auto_now=True, verbose_name="Время")
+    text = models.TextField(blank=True, null=True)
 
     @staticmethod
     def create_request(user, state, text):
@@ -55,10 +57,10 @@ class Error(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="Пользователь", blank=True, null=True)
     state = models.TextField(verbose_name="Экран", blank=True, null=True)
-    date = models.DateField(auto_now=True, verbose_name="Время")
-    text = models.TextField(blank=True, null=True )
+    date = models.DateTimeField(auto_now=True, verbose_name="Время")
+    text = models.TextField(blank=True, null=True)
+    error = models.TextField(blank=True, null=True)
 
     @staticmethod
-    def create_error(user, state, text):
-        Error.objects.create(user=user, state=state).save()
-
+    def create_error(user, state, text, error):
+        Error.objects.create(user=user, state=state, error=error, text=text).save()

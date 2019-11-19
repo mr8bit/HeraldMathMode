@@ -15,9 +15,9 @@ class VKTrigger(BaseTrigger):
     """
         VK триггер для State Machine
     """
-    def __init__(self, client, user_id, messenger, text, user_state, api):
-        super(VKTrigger, self).__init__(client, user_id, messenger, text, user_state, api)
+    def __init__(self, api, **kwds):
         self.api = api
+        super().__init__(**kwds)
 
     def send_keyboard(self, message, buttons, whom=None):
         """

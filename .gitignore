@@ -6,10 +6,13 @@
 .settings
 .vs/
 venv/
-
+.env
+./.env
 # Random files
 *~
 \#*
+dist
+./dist
 
 virtualenv/
 htmlcov/
