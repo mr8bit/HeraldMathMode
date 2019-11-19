@@ -7,15 +7,7 @@ services:
     volumes:
       - ./postgres:/var/lib/postgresql/data
 
-  nginx:
-    image: nginx:1.14.2
-    restart: always
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./nginx/nginx_prod.conf:/etc/nginx/conf.d/nginx.conf
-      - ./ssl:/etc/nginx/ssl
+
 
   web:
     build: .
@@ -28,5 +20,4 @@ services:
     volumes:
       - /root/event_chat_bots:/usr/app/event_bot
     depends_on:
-      - nginx
       - db

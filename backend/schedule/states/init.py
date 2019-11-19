@@ -57,10 +57,11 @@ class EnterGroup(State):
         if trigger.text == self.buttons[0]:
             trigger.send_message("✅Группа выбрана\n💾Сохраняю вас")
             new_user = trigger.get_user()
-            info = trigger.client.get_api().users.get(user_id=new_user.user_id)
-            new_user.first_name = info[0]['first_name']
-            new_user.second_name = info[0]['last_name']
-            new_user.save()
+            if new_user.messenger == 2: # Если ВК то сохраняем ФИО
+                info = trigger.client.get_api().users.get(user_id=new_user.user_id)
+                new_user.first_name = info[0]['first_name']
+                new_user.second_name = info[0]['last_name']
+                new_user.save()
             return MainMenu()
         elif trigger.text == self.buttons[1]:
             trigger.send_message("Попробуйте еще раз...")

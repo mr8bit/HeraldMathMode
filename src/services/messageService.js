@@ -1,4 +1,4 @@
-import api from '@/services/admin'
+import api from '@/services/api'
 
 export default {
   fetchMessages() {

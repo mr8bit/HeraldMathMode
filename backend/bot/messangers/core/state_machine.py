@@ -37,7 +37,6 @@ class StateMachine:
                 print("1 Идем к  " + str(self.state)+ str(datetime.datetime.now()))
                 new_state = self.state.on_trigger(trigger)
                 print("1 Вышли из " + str(self.state)+ str(datetime.datetime.now()))
-
         else:  # Знаем на какой экран идти
             instance = self.str_to_class(self.state)
             self.state = instance()

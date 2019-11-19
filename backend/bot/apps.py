@@ -1,4 +1,5 @@
 # coding=utf-8
+# django_telegram_bot/apps.py
 from django.apps import AppConfig
 from django.apps import apps
 from django.conf import settings
@@ -121,8 +122,7 @@ class DjangoTelegramBot(AppConfig):
         return cls.get_updater(id, safe)
 
     def ready(self):
-        bot_data = settings.TELEGRAM_BOT
-        if not bot_data['ENABLE']:
+        if DjangoTelegramBot.ready_run:
             return
         DjangoTelegramBot.ready_run = True
 
@@ -136,7 +136,8 @@ class DjangoTelegramBot(AppConfig):
         bot_data = settings.TELEGRAM_BOT
 
         if self.mode == WEBHOOK_MODE:
-            webhook_site = settings.TELEGRAM_BOT.get('WEBHOOK_SITE', None)
+            webhook_site = settings.TELEGRAM_BOT.get(
+                'WEBHOOK_SITE', None)
             if not webhook_site:
                 logger.warn(
                     'Required TELEGRAM_WEBHOOK_SITE missing in settings')
@@ -200,7 +201,8 @@ class DjangoTelegramBot(AppConfig):
                         Dispatcher(bot, None, workers=0))
                     hookurl = '{}/{}/{}/'.format(webhook_site, webhook_base,
                                                  token)
-                    max_connections = bot_data.get('WEBHOOK_MAX_CONNECTIONS',40)
+                    max_connections = bot_data.get('WEBHOOK_MAX_CONNECTIONS',
+                                                   40)
                     setted = bot.setWebhook(hookurl,
                                             certificate=certificate,
                                             timeout=timeout,

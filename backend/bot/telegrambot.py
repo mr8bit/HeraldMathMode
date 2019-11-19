@@ -18,15 +18,20 @@ def error(bot, update, error):
 def start(bot, update):
     machine = StateMachine(initial_state=BootStrapState())
     try:
-        usr = User.objects.get(user_id=update.message.chat_id).state
+        usr = User.objects.get(user_id=update.message.chat_id)
+        state = usr.state
     except Exception as e:
         usr = None
+        state = None
+
     trigger = TelegramTrigger(
         client=bot,
         user_id=update.message.chat_id,
         messenger=0,
         text=update.message.text,
-        user_state=usr
+        user_state=state,
+        api=None,
+        telegram_slug=update.message.chat.username
     )
     machine.fire(trigger)
 

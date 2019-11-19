@@ -15,6 +15,10 @@ class TelegramTrigger(BaseTrigger):
         Телеграм триггер для State Machine
     """
 
+    def __init__(self, telegram_slug, **kwds):
+        self.telegram_slug = telegram_slug
+        super().__init__(**kwds)
+
     def send_keyboard(self, message, buttons, whom=None):
         """
             Отправка клавиатуры
@@ -59,9 +63,10 @@ class TelegramTrigger(BaseTrigger):
         :return: User объект пользователя
         """
         try:
-            return User.objects.get(user_id=self.user_id)
+            usr =  User.objects.get(user_id=self.user_id)
+            return usr
         except Exception as e:
-            logger.error("Error on get user: {}".format(e))
+            logger.warning("Error on get user: {}".format(e))
             return False
 
     def create_user(self):
@@ -70,7 +75,8 @@ class TelegramTrigger(BaseTrigger):
         :return: None
         """
         try:
-            new_user = User.objects.create(user_id=self.user_id, messenger=self.messenger)
+            new_user = User.objects.create(user_id=self.user_id, telegram_slug=self.telegram_slug, messenger=self.messenger)
             new_user.save()
+            return True
         except Exception as e:
-            logger.error("Error on crete user: {}".format(e))
+            return False
