@@ -6,4 +6,6 @@ from backend.schedule.models import Help
 class HelpSerializer(serializers.ModelSerializer):
     class Meta:
         model = Help
-        fields = ['user', 'message', 'date', 'category']
+        fields = ['id', 'user', 'message', 'date', 'category', 'has_answer']
+
+

@@ -12,5 +12,6 @@ router.register(r'help', views.HelpViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('help/answer/<id>', include(router.urls)),
 ]
 
