@@ -16,4 +16,3 @@ class NotificationTestCase(TestCase):
     def test_str(self):
         notification = NotificationFactory()
         self.assertEqual(notification.__str__(), notification.name)
-

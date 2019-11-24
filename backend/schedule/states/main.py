@@ -1,8 +1,10 @@
-from backend.bot.messangers.core.state import BaseState as State
-from backend.schedule.states import settings
-from backend.schedule.schedule_api.main import get_next_day, get_by_date
 import re
+
+from backend.bot.messangers.core.state import BaseState as State
+from backend.schedule.schedule_api.main import get_next_day, get_by_date
 from backend.schedule.states import help
+from backend.schedule.states import settings
+
 
 class MainMenu(State):
     def __init__(self):

@@ -1,4 +1,5 @@
 from django.db import models
+
 from backend.bot.models import User
 
 
@@ -19,5 +20,6 @@ class AnswerOnIssue(models.Model):
         Ответ на вопрос
     """
     text = models.TextField(verbose_name="Ответ", default="")
-    issue = models.ForeignKey(Issue, verbose_name="Претензия пользователя",related_name='answers', on_delete=models.DO_NOTHING)
+    issue = models.ForeignKey(Issue, verbose_name="Претензия пользователя", related_name='answers',
+                              on_delete=models.DO_NOTHING)
     date = models.DateTimeField(auto_now=True, verbose_name="Время создания")

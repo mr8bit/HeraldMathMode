@@ -13,4 +13,3 @@ class AnswerOnIssueViewSet(viewsets.ModelViewSet):
     http_method_names = ['post', ]
     queryset = AnswerOnIssue.objects.all()
     serializer_class = AnswerOnIssueSerializer
-

@@ -1,20 +1,21 @@
 # coding=utf-8
 # django_telegram_bot/apps.py
+import importlib
+import logging
+import os.path
+
+import telegram
 from django.apps import AppConfig
 from django.apps import apps
 from django.conf import settings
-import importlib
-import telegram
 from django.utils.module_loading import module_has_submodule
+from telegram.error import InvalidToken, TelegramError
 from telegram.ext import Dispatcher
 from telegram.ext import Updater
-from telegram.error import InvalidToken, TelegramError
-from telegram.utils.request import Request
 from telegram.ext import messagequeue as mq
-from .mqbot import MQBot
-import os.path
+from telegram.utils.request import Request
 
-import logging
+from .mqbot import MQBot
 
 logger = logging.getLogger(__name__)
 
@@ -139,8 +140,6 @@ class DjangoTelegramBot(AppConfig):
         modes = ['WEBHOOK', 'POLLING']
         logger.info('Django Telegram Bot <{} mode>'.format(modes[self.mode]))
 
-
-
         if self.mode == WEBHOOK_MODE:
             webhook_site = settings.TELEGRAM_BOT.get(
                 'WEBHOOK_SITE', None)
@@ -222,9 +221,9 @@ class DjangoTelegramBot(AppConfig):
                     bot.more_info = webhook_info
                     logger.info(
                         'Telegram Bot <{}> setting webhook [ {} ] max connections:{} allowed updates:{} pending updates:{} : {}'
-                        .format(bot.username, webhook_info.url,
-                                webhook_info.max_connections, real_allowed,
-                                webhook_info.pending_update_count, setted))
+                            .format(bot.username, webhook_info.url,
+                                    webhook_info.max_connections, real_allowed,
+                                    webhook_info.pending_update_count, setted))
 
                 except InvalidToken:
                     logger.error('Invalid Token : {}'.format(token))
@@ -287,7 +286,7 @@ class DjangoTelegramBot(AppConfig):
         if self.mode == POLLING_MODE and num_bots > 0:
             logger.info(
                 'Please manually start polling update for {0} bot{1}. Run command{1}:'
-                .format(num_bots, 's' if num_bots > 1 else ''))
+                    .format(num_bots, 's' if num_bots > 1 else ''))
             for token in DjangoTelegramBot.__used_tokens:
                 updater = DjangoTelegramBot.get_updater(bot_id=token)
                 logger.info('python manage.py botpolling --username={}'.format(

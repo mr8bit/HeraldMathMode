@@ -5,8 +5,8 @@ from viberbot.api.viber_requests import (
     ViberMessageRequest, ViberSubscribedRequest, ViberFailedRequest
 )
 
-from backend.bot.models import User
 from backend.bot.messangers.core.state_machine import StateMachine
+from backend.bot.models import User
 from backend.schedule.states import BootStrapState
 from .trigger import ViberTrigger as Trigger
 

@@ -1,7 +1,8 @@
+import datetime
 import re
 from urllib.parse import quote
 from urllib.request import urlopen
-import datetime
+
 import pytz
 from django.core.cache import cache
 
@@ -24,7 +25,7 @@ def get_by_date(group, date):
         if lessons:
             output = ""
             for lesson in lessons:
-                output+=prepare_message(lesson)
+                output += prepare_message(lesson)
             return output
         else:
             return "🎉Занятия на этот день не найдены🥳"

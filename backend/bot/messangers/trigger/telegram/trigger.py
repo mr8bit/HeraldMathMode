@@ -63,7 +63,7 @@ class TelegramTrigger(BaseTrigger):
         :return: User объект пользователя
         """
         try:
-            usr =  User.objects.get(user_id=self.user_id)
+            usr = User.objects.get(user_id=self.user_id)
             return usr
         except Exception as e:
             logger.warning("Error on get user: {}".format(e))
@@ -75,7 +75,8 @@ class TelegramTrigger(BaseTrigger):
         :return: None
         """
         try:
-            new_user = User.objects.create(user_id=self.user_id, telegram_slug=self.telegram_slug, messenger=self.messenger)
+            new_user = User.objects.create(user_id=self.user_id, telegram_slug=self.telegram_slug,
+                                           messenger=self.messenger)
             new_user.save()
             return True
         except Exception as e:

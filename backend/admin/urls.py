@@ -1,11 +1,11 @@
-from django.urls import path
-from backend.admin import views
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,TokenVerifyView
-)
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView, TokenVerifyView
+)
+
+from backend.admin import views
 
 router = DefaultRouter()
 router.register(r'notifications', views.NotificationViewSet)
@@ -19,4 +19,3 @@ urlpatterns = [
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
 ]
-

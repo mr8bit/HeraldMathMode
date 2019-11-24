@@ -19,4 +19,3 @@ urlpatterns = [
 
     path('{0}'.format(settings.FACEBOOK_BOT.get("WEBHOOK_PREFIX")), views.facebook_bot, name='webhook_facebook'),
 ]
-

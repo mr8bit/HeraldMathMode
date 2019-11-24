@@ -1,21 +1,18 @@
 import json
 import logging
-
-from django.conf import settings
-
-from backend.bot.models import User
-from backend.bot.messangers.core.state_machine import StateMachine
-from backend.schedule.states import BootStrapState
-
-from pymessenger.bot import Bot
-
-from backend.bot.messangers.trigger.facebook.trigger import FacebookTrigger
-
-from django.http import HttpResponse
-
 import traceback
 
+from django.conf import settings
+from django.http import HttpResponse
+from pymessenger.bot import Bot
+
+from backend.bot.messangers.core.state_machine import StateMachine
+from backend.bot.messangers.trigger.facebook.trigger import FacebookTrigger
+from backend.bot.models import User
+from backend.schedule.states import BootStrapState
+
 logger = logging.getLogger(__name__)
+
 
 def create_trigger_from_request(facebook_request, facebook_client):
     recipient_id = facebook_request['sender']['id']
@@ -35,6 +32,7 @@ def create_trigger_from_request(facebook_request, facebook_client):
     )
     return trigger
 
+
 class FacebookRequestHandler:
     _instance = None
 
@@ -52,8 +50,8 @@ class FacebookRequestHandler:
         try:
             if request.method == 'GET':
                 """Before allowing people to message your bot, Facebook has implemented a verify token
-                that confirms all requests that your bot receives came from Facebook.""" 
-        
+                that confirms all requests that your bot receives came from Facebook."""
+
                 token_sent = request.GET['hub.verify_token']
                 if token_sent == settings.FACEBOOK_BOT.get('VERIFY_TOKEN'):
                     return HttpResponse(request.GET['hub.challenge'])
@@ -68,6 +66,6 @@ class FacebookRequestHandler:
                 pass
         except Exception as e:
             traceback.print_exc()
-            logger.warning(f'receive invalid request. {e}')    
+            logger.warning(f'receive invalid request. {e}')
 
         return HttpResponse()

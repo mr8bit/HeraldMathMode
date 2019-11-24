@@ -1,3 +1,4 @@
+import json
 import logging
 import sys
 
@@ -8,11 +9,9 @@ from django.views.decorators.csrf import csrf_exempt
 from telegram.error import (TelegramError)
 
 from backend.bot.apps import DjangoTelegramBot
-
-from backend.bot.messangers.handlers import ViberRequestHandler
-from backend.bot.messangers.handlers import VKRequestHandler
 from backend.bot.messangers.handlers import FacebookRequestHandler
-import json
+from backend.bot.messangers.handlers import VKRequestHandler
+from backend.bot.messangers.handlers import ViberRequestHandler
 
 logger = logging.getLogger(__name__)
 

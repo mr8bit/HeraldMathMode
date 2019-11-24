@@ -1,10 +1,11 @@
-from backend.bot.models import Request, Notification
-from backend.admin.serializers import RequestSerializer, RequestStateCountsSerializer, NotificationSerializer
-from rest_framework import generics
-from django.db.models import Count
-
 import datetime
+
+from django.db.models import Count
+from rest_framework import generics
 from rest_framework import viewsets
+
+from backend.admin.serializers import RequestSerializer, RequestStateCountsSerializer, NotificationSerializer
+from backend.bot.models import Request, Notification
 
 
 class RequestList(generics.ListAPIView):

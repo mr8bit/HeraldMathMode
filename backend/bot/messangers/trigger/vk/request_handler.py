@@ -1,16 +1,16 @@
+import datetime
 import json
 import logging
 
-from django.conf import settings
 import vk_api
-import datetime
-from backend.bot.models import User, Request, Error
-from backend.bot.messangers.core.state_machine import StateMachine
-from backend.schedule.states import BootStrapState
-
-from backend.bot.messangers.trigger import VKTrigger
-from requests.exceptions import ConnectionError
+from django.conf import settings
 from django.http import HttpResponse
+from requests.exceptions import ConnectionError
+
+from backend.bot.messangers.core.state_machine import StateMachine
+from backend.bot.messangers.trigger import VKTrigger
+from backend.bot.models import User, Request, Error
+from backend.schedule.states import BootStrapState
 
 logger = logging.getLogger(__name__)
 session = vk_api.VkApi(token=settings.VK_BOT.get('API_TOKEN'))
@@ -21,7 +21,7 @@ def create_trigger_from_request(vk_request, vk_client):
     ########### Сохраянем статистику в БД ###########
     try:
         usr = User.objects.get(user_id=vk_request['object']['user_id'])
-        Request.create_request(user=usr, state=usr.state, text=vk_request['object']['body']) # сохраняем запрос
+        Request.create_request(user=usr, state=usr.state, text=vk_request['object']['body'])  # сохраняем запрос
         state = usr.state
     except Exception as e:
         state = None

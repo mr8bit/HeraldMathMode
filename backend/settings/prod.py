@@ -10,7 +10,6 @@ DATABASES = {
     }
 }
 
-
 CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
 
 REDIS_HOST = os.getenv('REDIS_HOST', 'redis')
@@ -18,7 +17,6 @@ REDIS_PORT = os.getenv('REDIS_PORT', '6379')
 BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 
 CONSTANCE_REDIS_CONNECTION = BROKER_URL
-
 
 ALLOWED_HOSTS = ['*', ]
 
