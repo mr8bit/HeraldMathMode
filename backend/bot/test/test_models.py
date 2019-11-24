@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from backend.bot.test.factory import UserFactory
+from backend.bot.test.factory import UserFactory, NotificationFactory
 
 
 class UserTestCase(TestCase):
@@ -10,3 +10,10 @@ class UserTestCase(TestCase):
 
         self.assertEqual(telegram_user.__str__(), 'mr9bit')
         self.assertEqual(other_messenger_user.__str__(), 'John Good')
+
+
+class NotificationTestCase(TestCase):
+    def test_str(self):
+        notification = NotificationFactory()
+        self.assertEqual(notification.__str__(), notification.name)
+

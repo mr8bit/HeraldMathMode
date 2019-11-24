@@ -36,6 +36,9 @@ class Notification(models.Model):
     message = models.TextField(verbose_name="Сообщение")
     for_messenger = models.IntegerField(choices=choices, verbose_name="Мессенджер", default=4)
 
+    def __str__(self):
+        return self.name
+
 
 class Request(models.Model):
     """

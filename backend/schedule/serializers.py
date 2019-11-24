@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from backend.schedule.models import Help
+from backend.schedule.models import Issue
 
 
-class HelpSerializer(serializers.ModelSerializer):
+class IssueSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Help
+        model = Issue
         fields = ['id', 'user', 'message', 'date', 'category', 'has_answer']
 
 

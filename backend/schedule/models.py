@@ -2,7 +2,7 @@ from django.db import models
 from backend.bot.models import User
 
 
-class Help(models.Model):
+class Issue(models.Model):
     """
         Жалобы пользователей
     """
@@ -19,5 +19,5 @@ class AnswerOnHelpSerializer(models.Model):
         Ответ на вопрос
     """
     text = models.TextField(verbose_name="Ответ", default="")
-    help = models.ForeignKey(Help, verbose_name="Претензия пользователя", on_delete=models.DO_NOTHING)
+    help = models.ForeignKey(Issue, verbose_name="Претензия пользователя", on_delete=models.DO_NOTHING)
     date = models.DateTimeField(auto_now=True, verbose_name="Время создания")

@@ -8,7 +8,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(r'help', views.HelpViewSet)
+router.register(r'issue', views.IssueViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

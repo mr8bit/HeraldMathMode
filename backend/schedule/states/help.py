@@ -1,5 +1,5 @@
 from backend.bot.messangers.core.state import BaseState as State
-from backend.schedule.models import Help as HelpModel
+from backend.schedule.models import Issue as HelpModel
 from backend.schedule.states import main
 
 
