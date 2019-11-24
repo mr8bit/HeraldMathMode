@@ -14,10 +14,10 @@ class Issue(models.Model):
     has_answer = models.BooleanField(default=False, verbose_name="Был ответ")
 
 
-class AnswerOnHelpSerializer(models.Model):
+class AnswerOnIssue(models.Model):
     """
         Ответ на вопрос
     """
     text = models.TextField(verbose_name="Ответ", default="")
-    help = models.ForeignKey(Issue, verbose_name="Претензия пользователя", on_delete=models.DO_NOTHING)
+    issue = models.ForeignKey(Issue, verbose_name="Претензия пользователя",related_name='answers', on_delete=models.DO_NOTHING)
     date = models.DateTimeField(auto_now=True, verbose_name="Время создания")
