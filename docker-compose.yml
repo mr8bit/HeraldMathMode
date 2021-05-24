@@ -17,7 +17,7 @@ services:
     env_file:
       - .env
     ports:
-      - 8000:8000
+      - 8891:8891
     volumes:
       - /root/event_chat_bots:/usr/app/event_bot
     depends_on:
