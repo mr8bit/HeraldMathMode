@@ -11,7 +11,6 @@ if not webhook_base.endswith("/"):
     webhook_base += "/"
 
 urlpatterns = [
-    path('{}/'.format(settings.VIBER_BOT.get("WEBHOOK_PREFIX")), views.viber_bot, name='webhook_viber'),
 
     path('{}<str:bot_token>/'.format(webhook_base), views.webhook, name='webhook_telegram'),
 
