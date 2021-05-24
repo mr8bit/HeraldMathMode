@@ -13,7 +13,7 @@ services:
   web:
     build: .
     restart: always
-    command: gunicorn --bind 0.0.0.0:8000 --log-level INFO event_chat_bots.wsgi
+    command: gunicorn --bind 0.0.0.0:8891 --log-level INFO event_chat_bots.wsgi
     env_file:
       - .env
     ports:
