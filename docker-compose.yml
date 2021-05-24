@@ -10,7 +10,7 @@ services:
     ports:
       - 5434:5432
 
-  web:
+  bot:
     build: .
     restart: always
     command: python manage.py runserver 0.0.0.0:8891
@@ -27,7 +27,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.frontend.rule=Host:ctf.lambda-it.ru"
-      - "traefik.backend=ctf_bot_vpn"
+      - "traefik.backend=bot_on_ctf"
 
 networks:
   web:
