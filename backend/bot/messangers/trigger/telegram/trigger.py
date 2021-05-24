@@ -54,6 +54,7 @@ class TelegramTrigger(BaseTrigger):
         """
         destination = self.user_id
         photo_path = "{}/{}".format(settings.MEDIA_ROOT, image_path)
+        print(photo_path)
         self.client.send_photo(chat_id=destination, photo=open(photo_path, 'rb'))
 
     def send_document(self, document_path):

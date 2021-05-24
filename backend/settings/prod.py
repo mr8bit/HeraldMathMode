@@ -37,6 +37,10 @@ DJANGO_TELEGRAMBOT = {
 
 ## SENTRY
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static_dist"),
+]
+
 
 RAVEN_CONFIG = {
     'dsn': os.getenv('SENTRY'),
