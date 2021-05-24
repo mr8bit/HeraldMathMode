@@ -145,11 +145,9 @@ class ScheduleToday(State):
     def on_enter(self, trigger):
         res = ""
         today = get_today_schedule()
-        print(today)
         for item in today:
             res += item['title'] + '\n'
             res += "📍 " + item['location'] + '\n'
-            print(item['time_start'])
             time_start = datetime.fromisoformat(item['time_start'])
             time_end = datetime.fromisoformat(item['time_end'])
             new_format = "%H:%M"
