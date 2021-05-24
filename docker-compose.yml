@@ -16,11 +16,11 @@ services:
   bot:
     build: .
     restart: always
-    command: python manage.py runserver 0.0.0.0:8891
+    command: gunicorn --bind 0.0.0.0:8989
     env_file:
       - .env
     ports:
-      - 8891:8891
+      - 8989:8989
     volumes:
       - /root/event_chat_bots:/usr/app/event_bot
     depends_on:
