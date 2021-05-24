@@ -150,11 +150,11 @@ class ScheduleToday(State):
         for item in today:
             res += item['title'] + '\n'
             res += "📍 " + item['location'] + '\n'
-            # print(item['time_start'])
-            # time_start = datetime.fromisoformat(item['time_start'])
-            # time_end = datetime.fromisoformat(item['time_end'])
-            # new_format = "%H:%M"
-            # res += "🕑 " + str(time_start.strftime(new_format)) + " - " + str(time_end.strftime(new_format)) + '\n'
+            print(item['time_start'])
+            time_start = datetime.fromisoformat(item['time_start'])
+            time_end = datetime.fromisoformat(item['time_end'])
+            new_format = "%H:%M"
+            res += "🕑 " + str(time_start.strftime(new_format)) + " - " + str(time_end.strftime(new_format)) + '\n'
             res += '\n'
         trigger.send_keyboard(res, self.buttons)
 
