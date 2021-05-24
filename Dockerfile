@@ -16,7 +16,6 @@ RUN pip install raven
 RUN pip install gunicorn
 RUN ls -l
 
-ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
 
 
 
