@@ -1,7 +1,7 @@
 version: "2"
 services:
 
-  postgresbot:
+  postgres:
     image: postgres:latest
     command: -p 5434
     env_file:
@@ -22,7 +22,7 @@ services:
     volumes:
       - /root/event_chat_bots:/usr/app/event_bot
     depends_on:
-      - postgresbot
+      - postgres
     networks:
       - web
     labels:
