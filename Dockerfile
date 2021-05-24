@@ -14,6 +14,7 @@ COPY ./manage.py .
 RUN apk update && apk add git libressl-dev postgresql-dev libffi-dev gcc musl-dev python3-dev
 RUN pip install -r requirements.txt
 RUN pip install raven
+RUN pip install uwsgi
 RUN pip install psycopg2
 RUN pip install gunicorn
 RUN ls -l
