@@ -3,10 +3,11 @@ FROM python:3.7.3-alpine
 ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE backend.settings.prod
 # создаем рабочую папку
-WORKDIR /usr/app
+WORKDIR /usr/src/app
 # копируем рабочие файлы
 COPY ./backend ./backend
 COPY ./requirements.txt .
+COPY ./uwsgi.ini .
 COPY ./entrypoint.sh .
 COPY ./manage.py .
 # создаем зависимости
