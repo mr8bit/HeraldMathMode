@@ -1,5 +1,5 @@
 # Сборка backend части
-FROM python:3.7.10
+FROM 3.7.10-alpine3.13
 ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE backend.settings.prod
 # создаем рабочую папку

@@ -38,7 +38,6 @@ class MainMenu(State):
 
     def __init__(self):
         self.buttons = ['📅 Расписание', '🗺️ Карта', '🌐 VPN', '📶 WiFi']
-        # self.buttons = ['📅 Расписание', '🗺️ Карта',  '📶 WiFi']
         self.text = 'Главное меню'
 
     def on_enter(self, trigger):
