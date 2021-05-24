@@ -17,5 +17,4 @@ urlpatterns = [
 
     path('{0}'.format(settings.VK_BOT.get("WEBHOOK_PREFIX")), views.vk_bot, name='webhook_vk'),
 
-    path('{0}'.format(settings.FACEBOOK_BOT.get("WEBHOOK_PREFIX")), views.facebook_bot, name='webhook_facebook'),
 ]

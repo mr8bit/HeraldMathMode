@@ -9,7 +9,6 @@ from django.views.decorators.csrf import csrf_exempt
 from telegram.error import (TelegramError)
 
 from backend.bot.apps import DjangoTelegramBot
-from backend.bot.messangers.handlers import FacebookRequestHandler
 from backend.bot.messangers.handlers import VKRequestHandler
 from backend.bot.messangers.handlers import ViberRequestHandler
 
@@ -44,16 +43,6 @@ def vk_bot(request):
     return HttpResponse('Ok')
 
 
-@csrf_exempt
-def facebook_bot(request):
-    """
-        Урл для работы facebook
-    :param request:
-    :return:
-    """
-    facebook_request_handler = FacebookRequestHandler.create_instance()
-    response = facebook_request_handler.parse(request)
-    return response
 
 
 @csrf_exempt

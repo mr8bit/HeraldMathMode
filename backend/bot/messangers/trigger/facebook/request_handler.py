@@ -4,7 +4,6 @@ import traceback
 
 from django.conf import settings
 from django.http import HttpResponse
-from pymessenger.bot import Bot
 
 from backend.bot.messangers.core.state_machine import StateMachine
 from backend.bot.messangers.trigger.facebook.trigger import FacebookTrigger

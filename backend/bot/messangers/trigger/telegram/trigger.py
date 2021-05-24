@@ -56,6 +56,16 @@ class TelegramTrigger(BaseTrigger):
         photo_path = "{}/{}".format(settings.MEDIA_ROOT, image_path)
         self.client.send_photo(chat_id=destination, photo=open(photo_path, 'rb'))
 
+    def send_document(self, document_path):
+        """
+            Отправка документа
+        :param document_path: Путь на самом сервере
+        :return:
+        """
+        destination = self.user_id
+        document_path = "{}/{}".format(settings.MEDIA_ROOT, document_path)
+        self.client.send_document(chat_id=destination, document=open(document_path, 'rb'))
+
     def get_user(self, whom=None):
         """
             Получение пользователя из базы данных

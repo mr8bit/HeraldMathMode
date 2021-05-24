@@ -6,6 +6,8 @@ services:
       - .env
     volumes:
       - ./postgres:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
 
   web:
     build: .
@@ -19,3 +21,17 @@ services:
       - /root/event_chat_bots:/usr/app/event_bot
     depends_on:
       - db
+   networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:ctf.lambda-it.ru"
+      - "traefik.backend=ctf_bot_vpn"
+
+networks:
+  web:
+    external:
+      name: web
+
+
+

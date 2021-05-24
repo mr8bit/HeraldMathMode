@@ -6,7 +6,7 @@ from backend.bot.apps import DjangoTelegramBot
 from backend.bot.messangers.core.state_machine import StateMachine
 from backend.bot.messangers.trigger import TelegramTrigger
 from backend.bot.models import User, Request
-from backend.schedule.states import BootStrapState
+from backend.states.init import BootStrapState
 
 logger = logging.getLogger(__name__)
 

@@ -14,7 +14,7 @@ VIBER_BOT = {
 }
 
 TELEGRAM_BOT = {
-    'ENABLE': False,
+    'ENABLE': True,
     'MODE': 'WEBHOOK',
     'WEBHOOK_SITE': WEBHOOK_SITE,
     'WEBHOOK_PREFIX': 'telegram',
@@ -23,7 +23,7 @@ TELEGRAM_BOT = {
 }
 
 VK_BOT = {
-    'ENABLE': True,
+    'ENABLE': False,
     'MODE': 'WEBHOOK',
     'WEBHOOK_SITE': WEBHOOK_SITE,
     'WEBHOOK_PREFIX': 'vk',
