@@ -24,10 +24,10 @@ services:
       - postgres
     networks:
       - web
-      labels:
-        - "traefik.enable=true"
-        - "traefik.frontend.rule=Host:ctf.lambda-it.ru"
-        - "traefik.backend=ctf_bot_vpn"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:ctf.lambda-it.ru"
+      - "traefik.backend=ctf_bot_vpn"
 
 networks:
   web:
