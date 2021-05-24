@@ -3,20 +3,13 @@ from backend.settings.base import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('POSTGRES_DB', 'None'),
+        'NAME': os.getenv('POSTGRES_NAME', 'None'),
         'USER': os.getenv('POSTGRES_USER', 'None'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'None'),
         'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('POSTGRES_PORT', 'localhost'),
     }
 }
-
-CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
-
-REDIS_HOST = os.getenv('REDIS_HOST', 'redis')
-REDIS_PORT = os.getenv('REDIS_PORT', '6379')
-BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
-
-CONSTANCE_REDIS_CONNECTION = BROKER_URL
 
 ALLOWED_HOSTS = ['*', ]
 
