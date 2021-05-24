@@ -16,7 +16,7 @@ services:
   bot:
     build: .
     restart: always
-    command: gunicorn --bind 0.0.0.0:8989
+    command: python manage.py runserver 0.0.0.0:8989
     env_file:
       - .env
     ports:
