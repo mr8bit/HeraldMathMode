@@ -36,6 +36,7 @@ DJANGO_TELEGRAMBOT = {
 }
 
 ## SENTRY
+STATIC_URL = '/static/'
 
 RAVEN_CONFIG = {
     'dsn': os.getenv('SENTRY'),
