@@ -1,7 +1,8 @@
 version: '3'
 services:
-  db:
-    image: postgres
+
+  postgres:
+    image: postgres:latest
     env_file:
       - .env
     volumes:
@@ -20,13 +21,13 @@ services:
     volumes:
       - /root/event_chat_bots:/usr/app/event_bot
     depends_on:
-      - db
-   networks:
+      - postgres
+    networks:
       - web
-    labels:
-      - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:ctf.lambda-it.ru"
-      - "traefik.backend=ctf_bot_vpn"
+      labels:
+        - "traefik.enable=true"
+        - "traefik.frontend.rule=Host:ctf.lambda-it.ru"
+        - "traefik.backend=ctf_bot_vpn"
 
 networks:
   web:
