@@ -4,6 +4,8 @@ services:
   postgres:
     image: postgres:latest
     command: -p 5434
+    networks:
+      - web
     env_file:
       - .env
     volumes:
